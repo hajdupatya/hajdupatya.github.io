@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>Kinyíló Rózsa</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a1a, #000);
+            overflow: hidden;
+        }
+        .rose {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            animation: float 3s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        .petal {
+            position: absolute;
+            width: 75px;
+            height: 110px;
+            background: radial-gradient(circle at 30% 30%, #581414, #cc0000);
+            border-radius: 60% 60% 70% 70%;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: transform 2s ease-in-out, opacity 2s ease-in-out;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+        .bloom .petal {
+            opacity: 1;
+            transform: scale(1);
+            animation: subtle-sway 5s ease-in-out infinite alternate;
+        }
+        /*@keyframes subtle-sway {
+            0% { transform: scale(1) rotate(-3deg); }
+            100% { transform: scale(1) rotate(3deg); }
+        }*/
+        .petal:nth-child(1) { transform: rotate(15deg) translateY(-30px); left: 75px; top: 33px; z-index: 2; }
+        .petal:nth-child(2) { transform: rotate(-15deg) translateY(-15px); right: 80px; top: 17px; z-index: 2; }
+        .petal:nth-child(3) { transform: rotate(-8deg) translateY(0px); left: 10px; z-index: 3; }
+        .petal:nth-child(4) { transform: rotate(8deg) translateY(0px); right: 10px; z-index: 3; }
+        .petal:nth-child(5) { transform: rotate(0deg) translateY(-25px); left: 37px; top: 20px; z-index: 4; }
+        .center {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            background: radial-gradient(circle at 30% 30%, #581414, #cc0000);
+            border-radius: 50%;
+            top: 30px;
+            left: 42px;
+            z-index: 5;
+        }
+        .stem {
+            position: absolute;
+            width: 14px;
+            height: 160px;
+            background: linear-gradient(to bottom, #228B22, #006400);
+            top: 110px;
+            left: 68px;
+            border-radius: 6px;
+        }
+        .leaf {
+            position: absolute;
+            width: 55px;
+            height: 30px;
+            background: linear-gradient(to right, #3ca935, #216f21);
+            border-radius: 50%;
+            top: 140px;
+            animation: leaf-move 3s ease-in-out infinite alternate;
+        }
+        .leaf.left {
+            left: -45px;
+            transform: rotate(-35deg);
+        }
+        .leaf.right {
+            right: -45px;
+            transform: rotate(35deg);
+        }
+        @keyframes leaf-move {
+            0% { transform: rotate(-35deg) translateX(0); }
+            100% { transform: rotate(-30deg) translateX(5px); }
+        }
+        .title {
+            margin-top: 100px;
+            color: #fff;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px #000;
+            font-family: "Sofia", sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="rose" id="rose">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+         <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+    </div>
+    <br>
+    <div class="title">
+      <h1>Szeretlek Trixike!</h1>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("rose").classList.add("bloom");
+            }, 500);
+        });
+    </script>
+</body>
+</html>
